@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conteúdo Grátis!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #botao-magico {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background-color: #FF0000; /* Botão chamativo */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s;
+        }
+        #botao-magico:active {
+            transform: scale(0.98); /* Efeito de clique */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🚨 ALERTA: CLIQUE AQUI AGORA PARA GANHAR UM PRÊMIO! 🚨</h1>
+    <p>É um prêmio de verdade! Não perca!</p>
+    <button id="botao-magico" onclick="abrirVariasAbas()">EU QUERO MEU PRÊMIO!</button>
+
+    <script>
+        // Lista de URLs para abrir. Use URLs reais para maior surpresa!
+        // URLs sugeridas: memes, vídeos do YouTube, sites aleatórios, etc.
+        const urlsDaPegadinha = [
+            'https://www.google.com/search?q=memes+gatos', // 1
+            'https://www.google.com/search?q=cachorro+engraçado', // 2
+            'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // 3 (O Rickroll clássico!)
+            'https://www.google.com/search?q=o+que+é+trolagem', // 4
+            'https://www.google.com/search?q=piadas+ruins', // 5
+            // Você pode adicionar mais...
+        ];
+
+        function abrirVariasAbas() {
+            // Itera sobre a lista de URLs e abre cada uma em uma nova aba/janela.
+            urlsDaPegadinha.forEach(url => {
+                // Abre em uma nova aba (_blank).
+                window.open(url, '_blank');
+            });
+            
+            // Opcional: Altera a mensagem na página original após o clique
+            document.body.innerHTML = '<h1>🤣 FUI EU QUE TE TROLEI! 🤣</h1><p>Você acabou de abrir ' + urlsDaPegadinha.length + ' abas no seu celular!</p>';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sua Notificação Importante</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            height: 100vh;
+            background-color: #ffffff; /* Fundo branco para simular uma tela normal */
+        }
+        
+        #conteudo {
+            padding-top: 50px;
+        }
+
+        /* ------------------------------------------------ */
+        /* ESTILO DA CAMADA DE TROLAGEM (TELA QUEBRADA) */
+        /* ------------------------------------------------ */
+        #tela-quebrada {
+            position: fixed; /* Fixa sobre tudo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Permite interagir com o que está por baixo, mas vamos desativar depois */
+            /* Z-index muito alto para garantir que fique na frente */
+            z-index: 9999;
+            /* Começa invisível! */
+            opacity: 0; 
+            transition: opacity 0.1s ease-in; /* Transição suave para aparecer */
+        }
+
+        /* Ocupa 100% da tela */
+        #tela-quebrada img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que cubra a tela do celular */
+        }
+
+        /* Classe que será adicionada via JavaScript */
+        .quebrada {
+            opacity: 1 !important;
+            /* Opcional: Desative o pointer-events para simular que não é mais possível interagir! */
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="conteudo">
+        <h1>Toque para ver a notificação!</h1>
+        <p>Parece que o celular está com a tela suja, toque para limpar e ler o conteúdo.</p>
+        <p style="color: red;">(Não se preocupe, é só uma pegadinha!)</p>
+    </div>
+
+    <div id="tela-quebrada">
+        <img src="https://i.imgur.com/7KkXj.png" alt="Vidro Rachado">
+    </div>
+
+    <script>
+        // Função ativada no primeiro toque (em qualquer lugar da tela)
+        function ativarRachadura() {
+            const rachadura = document.getElementById('tela-quebrada');
+            
+            // 1. Adiciona a classe 'quebrada' para tornar a imagem visível
+            rachadura.classList.add('quebrada');
+
+            // 2. Opcional: Altera o conteúdo principal da página
+            document.getElementById('conteudo').innerHTML = 
+                '<h1>HAHA! Tela Quebrada!</h1>' +
+                '<p>Você caiu na pegadinha! 🤣</p>' +
+                '<button onclick="removerRachadura()">Consertar</button>';
+            
+            // 3. Remove o evento de toque para que o efeito só aconteça uma vez
+            window.removeEventListener('touchstart', ativarRachadura);
+            window.removeEventListener('click', ativarRachadura); // Para caso abram no desktop
+        }
+
+        function removerRachadura() {
+             document.getElementById('tela-quebrada').classList.remove('quebrada');
+             document.getElementById('conteudo').innerHTML = 
+                '<h1>Tudo Normal!</h1>' +
+                '<p>Não toque mais na tela!</p>';
+        }
+
+        // Adiciona ouvintes de evento para toque (celular) e clique (desktop)
+        window.addEventListener('touchstart', ativarRachadura);
+        window.addEventListener('click', ativarRachadura);
+    </script>
+
+</body>
+</html>
